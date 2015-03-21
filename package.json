@@ -1,0 +1,34 @@
+{
+  "name": "oauth2-token-manager",
+  "version": "1.0.0",
+  "description": "Generate, verify and refresh OAuth2 tokens. Exchange code for token. Does not assume any particular storage for tokens.",
+  "main": "./lib/index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/saparin/oauth2-token-manager.git"
+  },
+  "keywords": [
+    "oauth2",
+    "token",
+    "manage",
+    "generate",
+    "verify",
+    "refresh",
+    "exchange"
+  ],
+  "author": "saparin",
+  "license": "MIT",
+  "dependencies": {
+    "crypto-lite": "0.0.7",
+    "underscore": "~1.8.2",
+    "q": "~1.2.0"
+  },
+  "devDependencies": {
+    "mocha": "~2.1.0",
+    "gulp-jsdoc": "~0.1.4",
+    "gulp": "~3.8.11"
+  }
+}
