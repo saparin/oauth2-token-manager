@@ -1,6 +1,6 @@
 {
   "name": "oauth2-token-manager",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Generate, verify and refresh OAuth2 tokens. Exchange code for token. Does not assume any particular storage for tokens.",
   "main": "./lib/index.js",
   "scripts": {
