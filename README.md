@@ -1,18 +1,16 @@
-#oauth2-token-manager
-
-##Features
+##Features##
 
 * No assumptions about tokens storage type.
 * You can store arbitrary data assosiated with issued token.
 * Secret for authenticity verification. This may be a secret based on IP address and port.
 
-##Install
+##Install##
 
 `npm install oauth2-token-manager`
 
-##Usage examples
+##Usage examples##
 
-###Generate exchange code
+###Generate exchange code###
 
 ```
 tokenManager
@@ -23,7 +21,7 @@ tokenManager
     });
 ```
 
-###Exchange code for token
+###Exchange code for token###
 
 ```
 tokenManager
@@ -34,7 +32,7 @@ tokenManager
     });
 ```
 
-###Verify access token
+###Verify access token###
 
 ```
 tokenManager
@@ -46,7 +44,7 @@ tokenManager
     });
 ```
 
-###Generate access token
+###Generate access token###
 
 ```
 tokenManager
@@ -57,7 +55,7 @@ tokenManager
     });    	
 ```
 
-###Refresh access token
+###Refresh access token###
 
 ```
 tokenManager
@@ -68,7 +66,7 @@ tokenManager
     });
 ```
 
-##API reference
+##API reference##
 
 * [generateAccessToken](#generateAccessToken)
 * [generateExchangeCode](#generateExchangeCode)
@@ -83,7 +81,7 @@ tokenManager
 * [callback: deserializeCallback](#deserializeCallback)
 
 <a name="generateAccessToken"></a>
-###generateAccessToken(key, [userData], [secret])
+###generateAccessToken(key, [userData], [secret])###
 Generate a token and store it associated with a key.
 
 **Params**
@@ -95,7 +93,7 @@ Generate a token and store it associated with a key.
 **Returns**: `promise` - A promise to return.								[TokenObject](#TokenObject)
 
 <a name="generateExchangeCode"></a>
-###generateExchangeCode(key, redirectUri, [userData], [secret])
+###generateExchangeCode(key, redirectUri, [userData], [secret])###
 Generate an exchange code and store it associated with a key.
 
 **Params**
@@ -108,7 +106,7 @@ Generate an exchange code and store it associated with a key.
 **Returns**: `promise` - A promise to return an exchange code.
 
 <a name="verify"></a>
-###verify(token, [secret])
+###verify(token, [secret])###
 Verify a token validity.
 
 **Params**
@@ -119,7 +117,7 @@ Verify a token validity.
 **Returns**: `promise` - A promise to return true for a valid token, false for a not and an optional user data if deserialize callback supports it.		Be sure to use the `spread` method like this `spread(function(result, userData){})`.
 
 <a name="exchange"></a>
-###exchange(code, redirectUri, [secret])
+###exchange(code, redirectUri, [secret])###
 Exchange a code for a token.
 
 **Params**
@@ -131,7 +129,7 @@ Exchange a code for a token.
 **Returns**: `promise` - A promise to return [TokenObject](#TokenObject) or null.
 
 <a name="refresh"></a>
-###refresh(refreshToken, [secret])
+###refresh(refreshToken, [secret])###
 Refresh an accessToken.
 
 **Params**
@@ -142,7 +140,7 @@ Refresh an accessToken.
 **Returns**: `promise` - A promise to return [TokenObject](#TokenObject).
 
 <a name="serialize"></a>
-###serialize(cb)
+###serialize(cb)###
 Set a function to serialize a token in storage.
 
 **Params**
@@ -150,7 +148,7 @@ Set a function to serialize a token in storage.
 - cb <code>[serializeCallback](#serializeCallback)</code> - Serialization callback.
 
 <a name="deserialize"></a>
-###deserialize(cb)
+###deserialize(cb)###
 Set a function to deserialize a token from storage.
 
 **Params**
@@ -158,7 +156,7 @@ Set a function to deserialize a token from storage.
 - cb <code>[deserializeCallback](#deserializeCallback)</code> - Derialization callback.
 
 <a name="TokenObject"></a>
-###type: TokenObject
+###type: TokenObject###
 **Properties**
 
 - accessToken `string`  
@@ -167,7 +165,7 @@ Set a function to deserialize a token from storage.
 **Type**: `Object`
 
 <a name="StorageObject"></a>
-###type: StorageObject
+###type: StorageObject###
 **Properties**
 
 - code1 `string` - `code1` serializeCallback parameter  
@@ -176,3 +174,30 @@ Set a function to deserialize a token from storage.
 - expiresIn `string` - `expiresIn` serializeCallback parameter  
 
 **Type**: `Object`
+
+<a name="serializeCallback"></a>
+##callback: serializeCallback##
+Serialize an access token or an exchange code object in a storage.
+
+**Params**
+
+- key `string` - Primary key for an object.  
+- code1 `string` - An access token or null.  
+- code2 `string` - A refresh token or an exchange code.  
+- createdAt `string` - Time in seconds since epoch.  
+- expiresIn `string` - Expiration time in seconds.  
+- \[userData\] `object` - Additional user data.  
+
+**Type**: `function`  
+**Returns**: `promise` - A promise to store the object that contains code1, code2, createdAt and expiresIn parameters.                       The deffered must be resolved with `true` value on success.
+
+<a name="deserializeCallback"></a>
+##callback: deserializeCallback##
+Deserialize an access token or an exchange code object from a storage.
+
+**Params**
+
+- key `string` - `key` serializeCallback parameter.  
+
+**Type**: `function`  
+**Returns**: `promise` - A promise to return [StorageObject](#StorageObject).  

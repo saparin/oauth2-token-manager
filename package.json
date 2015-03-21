@@ -19,7 +19,7 @@
     "refresh",
     "exchange"
   ],
-  "author": "saparin",
+  "author": "sergeya",
   "license": "MIT",
   "dependencies": {
     "crypto-lite": "0.0.7",
